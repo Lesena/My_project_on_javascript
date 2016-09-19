@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf8'>
+
+<META name='description' CONTENT='Мини галлерея на javascript'>
+<META name='keywords' CONTENT='пример галлереи'>
+<title>Слайдер на javascript - </title>
+</head>
+<body onload="setting()">
+
+<style type="text/css">
+body{background: url('');}
+	
+	.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+	background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+	}
+	.myButton:hover {
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+		background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+		background-color:#0061a7;
+	}
+	.myButton:active {
+		position:relative;
+		top:1px;
+	}
+	.tab{
+		width: 240px;
+		height: 200px;
+		background: #fff;
+		border-radius: 0 0 12px 12px;
+		-webkit-border-radius: 0 0 12px 12px;
+		-moz-border-radius: 0 0 12px 12px;
+		display: none;
+	}
+	
+	.wrap_tab{
+		width: 240px;
+		height: 230px;
+		margin: 40px auto;	
+	}
+		
+</style>
+
+		<script type="text/javascript">
+		
+				//Номер текущего выбранного таба
+			var curent_tab = 1;
+			
+				//Названия табов
+			var tabName_1 = "Автомобили";
+			var tabName_2 = "Энциклопедия";
+			var tabName_3 = "Развлечения";
+			
+			
+					//Функция установки настроек
+			function setting(){
+				
+					var wrapper = document.getElementById('wrap');
+					
+						//Выбираем все кнопки, присваивая их глобальным переменным
+					window.battom1 = document.getElementById('bat_1');
+					window.battom2 = document.getElementById('bat_2');
+					window.battom3 = document.getElementById('bat_3');
+				
+						//Даем табам названия
+					battom1.innerHTML = tabName_1;
+					battom2.innerHTML = tabName_2;
+					battom3.innerHTML = tabName_3;
+				
+						//Выбираем все Div блоки, присваивая их глобальным переменным
+					window.taba1 = document.getElementById('tab_1');
+					window.taba2 = document.getElementById('tab_2');
+					window.taba3 = document.getElementById('tab_3');
+							
+					var newWidth = battom1.clientWidth + battom2.clientWidth + battom3.clientWidth; 
+
+					newWidth += 6;
+					
+					wrapper.style.width =  newWidth + 'px';
+					
+					taba1.style.width = newWidth + 'px';
+					taba2.style.width = newWidth + 'px';
+					taba3.style.width = newWidth + 'px';			
+			}
+		
+			function show_tab(num){
+			
+		
+				if(num == 1 && curent_tab != num){
+						
+						taba1.style.display='block';	
+						battom1.style.border = '1px solid #ffffff';
+						
+						battom2.style.border = 'none';
+						battom3.style.border = 'none';
+						
+						
+						taba2.style.display='none';
+						taba3.style.display='none';
+						curent_tab = num;
+				}
+				
+				if(num == 2 && curent_tab != num){
+				
+						taba2.style.display='block';	
+						battom2.style.border = '1px solid #ffffff';
+						
+						battom1.style.border = 'none';
+						battom3.style.border = 'none';
+						
+						taba1.style.display='none';
+						taba3.style.display='none';
+						curent_tab = num;
+				}
+			
+				if(num == 3 && curent_tab != num){
+				
+						taba3.style.display='block';	
+						battom3.style.border = '1px solid #ffffff';
+						
+						battom1.style.border = 'none';
+						battom2.style.border = 'none';
+						
+						taba1.style.display='none';
+						taba2.style.display='none';
+						curent_tab = num;
+				}
+			}
+		
+		</script>
+				
+		<div id="wrap" class="wrap_tab">
+			
+			<div>
+		
+				<center><span style="border: 1px solid #ffffff;" onMouseOver="show_tab(1)" onclick="show_tab(1)" id="bat_1" class="myButton"></span><span id="bat_2" onMouseOver="show_tab(2)" onclick="show_tab(2)" class="myButton"></span><span onMouseOver="show_tab(3)" onclick="show_tab(3)" id="bat_3" class="myButton"></span></center>
+			
+			</div>	
+			
+			<!--  1 Tab -->
+
+			<div style="display: block;" id="tab_1" class="tab">
+			
+				<div style="padding: 5px;">
+					<p>Нанотехноло́гия — область фундаментальной и прикладной науки и техники, имеющая дело с совокупностью теоретического обоснования, практических методов исследования</p>
+					<p>Материалы, разработанные на основе наночастиц с уникальными характеристиками, вытекающими из микроскопических размеров их составляющих</p>
+				</div>
+			
+			</div>
+			
+			
+			<!--  2 Tab -->
+			
+			<div id="tab_2" class="tab">
+			
+				<div style="padding: 5px;">
+					<p>Графен — монослой атомов углерода, полученный в октябре 2004 года в Манчестерском университете (The University Of Manchester). Графен можно использовать как детектор молекул (NO2), позволяющий детектировать приход и уход единичных молекул. Носители зарядов в графене обладают высокой подвижностью при комнатной температуре, благодаря чему с решением проблемы формирования.</p>
+
+				</div>
+			
+			</div>
+			
+			
+			<!--  3 Tab -->
+			
+			<div id="tab_3" class="tab">
+			
+				<div style="padding: 5px;">
+					<p>Углеродные нанотрубки — протяжённые цилиндрические структуры диаметром от одного до нескольких десятков нанометров и длиной до нескольких сантиметров, состоящие из одной или нескольких свёрнутых в трубку гексагональных графитовых плоскостей (графенов) и обычно заканчивающиеся полусферической головкой.</p>
+				</div>
+			
+			</div>
+			
+		</div>
+
+		
+			
+</body>
+</html>
