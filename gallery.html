@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf8'>
+
+<META name='description' CONTENT='Мини галлерея на javascript'>
+<META name='keywords' CONTENT='пример галлереи'>
+<title>Мини галлерея для сайта на javascript </title>
+<style type="text/css">
+
+	.wrapper{
+		width: 640px;
+		height: 480px;
+		margin: 10px auto;
+	}
+	
+	.left_right{
+		position: absolute;
+		display: none;
+		cursor: pointer;
+		margin: -288px 0 0 10px;
+	}
+body{background: url('http://sergey-oganesyan.ru/wp-content/uploads/2014/01/f.jpg');}
+	
+	.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+	background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+	}
+	.myButton:hover {
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+		background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+		background-color:#0061a7;
+	}
+	.myButton:active {
+		position:relative;
+		top:1px;
+	}
+</style>
+</head>
+<body>
+
+	<div onMouseOver="btn_show()" onMouseOut="btn_noshow()" class="wrapper">
+	
+			<script type="text/javascript">  
+			
+						//Массив, в котором содержатся ссылки на изображения
+				var imageArray = [
+				
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/1.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/2.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/3.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/4.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/5.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/6.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/7.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/8.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/9.jpg",		
+					"http://sergey-oganesyan.ru/wp-content/uploads/2014/01/10.jpg",				
+				];
+				
+				window.number = '0';
+
+							//Привязываем количество картинок к размеру массива
+				var imageCount = imageArray.length;
+								
+				function image(num){
+				
+						//Если выбрана следующая картинка
+					if(num == 1){
+					
+							//Если это последняя картинка, то не увеличиваем счетчик number
+						if(number < imageCount - 1){
+						
+							number++;
+
+							document.getElementById('images').src = imageArray[number];
+							document.getElementById('num_img').innerHTML= number + 1 + '/' + imageCount;
+						}
+					}					 
+					else{  //Если выбрана предыдущая картинка
+					
+								//Если это первая картинка, то не уменьшаем счетчик number
+						if(number > 0){
+						
+							number--;
+							document.getElementById('images').src = imageArray[number];
+							document.getElementById('num_img').innerHTML= number + 1 + '/' + imageCount;
+						}
+					}
+				}
+				
+						//Функция для показа стрелочек
+				function btn_show(){
+
+					if(number != 0) document.getElementById('left').style.display='block';
+					if(number != imageCount - 1) document.getElementById('right').style.display='block';
+				}
+				
+						//Функция, которая прекращает показ стрелочек
+				function btn_noshow(){
+
+					document.getElementById('left').style.display='none';
+					document.getElementById('right').style.display='none';
+				}
+					
+					//Выводим картинки
+				document.write('<img id="images" src="' + imageArray[0] + '">');
+			</script>
+
+						<!-- Стрелочка влево -->
+		<div id="left" onclick="image(0)" class="left_right"><img src="http://sergey-oganesyan.ru/wp-content/uploads/2014/01/left.png"></div>
+					
+						<!-- Стрелочка вправо -->
+		<div id="right" onclick="image(1)" class="left_right" style="margin-left: 534px; position: absolute; display: none;"><img src="http://sergey-oganesyan.ru/wp-content/uploads/2014/01/right.png"></div>
+			
+	</div>
+
+	<center><p style="font-size: 18px;color: #333;font-weight: bold;" id="num_img"></p></center>
+	
+	<center><span class="myButton" onclick="image(0)">Back</span> <span class="myButton"  onclick="image(1)">Next</span></center>
+	
+	
+</body>
+</html>
