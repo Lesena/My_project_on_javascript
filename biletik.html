@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf8'>
+<
+<title>Проверяем - счасливый ли билет? </title>
+</head>
+<style>
+body{background: url('http://sergey-oganesyan.ru/wp-content/uploads/2014/01/f.jpg');}
+	
+	.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+	background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+	}
+	.myButton:hover {
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+		background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+		background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+		background-color:#0061a7;
+	}
+	.myButton:active {
+		position:relative;
+		top:1px;
+	}
+</style>
+<body>
+<script type="text/javascript">
+				
+				//Функция для проверки введенного числа
+		function check(){
+			var number = document.getElementById('number').value;
+				
+				//Выполняем проверку введенных данных
+			if(number === '' || number.length != 6 || isNaN(number)) document.getElementById('result').innerHTML='Вы ввели пустое либо неверное значение!';
+			
+			else{		//Получаем сумму первых трех чисел
+				one = parseInt(number.substr(0, 1), 10) + parseInt(number.substr(1, 1), 10) + parseInt(number.substr(2, 1), 10);
+						
+						//Получаем сумму последних трех чисел
+				two = parseInt(number.substr(3, 1), 10) + parseInt(number.substr(4, 1), 10) + parseInt(number.substr(5, 1), 10);
+					
+					//Если суммы равны, то билетик является счастлыв - выводим соответствующее сообщение
+				if(one == two) document.getElementById('result').innerHTML='У Вас счастливый билетик! Поздравляем!';
+				else document.getElementById('result').innerHTML='К сожалению билетик несчастливый..';
+			}
+		}
+		
+</script>
+<center><input id="number" name="number" style="width: 200px; height: 40px; padding: 8px; color: #666; font-size: 50px;" placeholder="Число.." required type="text">
+<p style="color: #333333;font-size: 25px;font-weight: bold;" id="result"></p>
+<input class="myButton" type="submit" onclick="check()" style="width: 216px; cursor: pointer;height: 60px;" value="Проверить билетик"></center>
+	
+</body>
+</html>
